@@ -23,7 +23,12 @@ const mascotaSeleccionada = document.querySelector('#mascota-propia')
 const mascotaRival = document.querySelector('#mascota-rival')
 const vidasPropia = document.querySelector('#vidas-propia')
 const vidasRival = document.querySelector('#vidas-rival')
-const msjDinamico = document.querySelector('#msj-dinamico')
+const msjDinamico = document.querySelector('#resultado-batalla')
+msjDinamico.style.display = 'flex'
+const resultadoMio = document.querySelector('#resultado-mio')
+resultadoMio.style.display = 'flex'
+const resultadoEnemigo = document.querySelector('#resultado-enemigo')
+resultadoEnemigo.style.display = 'flex'
 
 //section de reiniciar
 const sectionReiniciar = document.querySelector('#reiniciar');
@@ -50,7 +55,7 @@ reiniciar.addEventListener('click', recargarPagina)
 //para cambiar el nombre de la mascota seleccionada en el html 
 function mascota(){
     if(Hipodoge.checked){
-        pokemon = mascotaSeleccionada.innerText = "Hipodoge"
+        pokemon = mascotaSeleccionada.innerText = "Hipodoge";
     }else if(Capipepo.checked){
         pokemon = mascotaSeleccionada.innerText = "Capipepo"
     }else if(Ratigueya.checked){
@@ -63,9 +68,10 @@ function mascota(){
         pokemon = mascotaSeleccionada.innerText = "Pydos"
     }else{
         alert("Seleccione una mascota")
+        return 
     }
-    btnAtaques.style.display = 'block'
-    sectionReiniciar.style.display = 'block'
+    btnAtaques.style.display = 'flex'
+    sectionReiniciar.style.display = 'flex'
     seleccionarMascotaRival()
     limpiar()
     seleccionar.disabled = true
@@ -94,7 +100,7 @@ function seleccionarMascotaRival(){
     }
 }
 
-//Para realizar los ataques con los botones
+//Para los ataques con los botones
 function ataqueFuego(){
     ataqueJugador = "Fuego 🔥"
     seleccionarAtaqueEnemigo() 
@@ -130,9 +136,16 @@ function seleccionarAtaqueEnemigo(){
 
 //para generar un mensaje dinamico
 function dinamico(){
-    let parrafo = document.createElement('p')
-    parrafo.innerText = `Tu mascota ${pokemon} uso el ataque ${ataqueJugador} y la mascota rival ${pokemonRival} uso el ataque ${ataqueEnemigo} y el resultado del la batalla es ${ataques}.`
-    msjDinamico.appendChild(parrafo)
+    let nuevoAtaqueMio = document.createElement('p')
+    let nuevoAtaqueEnemigo = document.createElement('p')
+
+    msjDinamico.innerText = ataques
+    nuevoAtaqueMio.innerText = ataqueJugador
+    nuevoAtaqueEnemigo.innerText = ataqueEnemigo
+
+    resultadoMio.appendChild(nuevoAtaqueMio)
+    resultadoEnemigo.appendChild(nuevoAtaqueEnemigo)
+    
 }
 
 //para determinar quien gana con cada combinacion de ataques
@@ -154,16 +167,12 @@ function combates(){
 //para saber quien gano y reiniciar el juego
 function resultado(){
     if(vidaEnemigo == 0){
-        let parrafo = document.createElement('p')
-        parrafo.innerText = 'Felicitaciones Ganaste.'
-        msjDinamico.appendChild(parrafo)
+        msjDinamico.innerText = 'Felicitaciones Ganaste 😎.'
         fuego.disabled = true
         agua.disabled = true
         tierra.disabled = true
     }else if(vidaJugador == 0){
-        let parrafo = document.createElement('p')
-        parrafo.innerText = 'Perdiste, intentalo nuevamente.'
-        msjDinamico.appendChild(parrafo)
+        msjDinamico.innerText = 'Perdiste, intentalo nuevamente 😯.'
         fuego.disabled = true
         agua.disabled = true
         tierra.disabled = true

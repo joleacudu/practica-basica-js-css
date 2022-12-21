@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300&display=swap');
+
+body{
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-image: url(../image/661563.jpg);
+    font-family: 'Fredoka One', cursive;  
+}
+
+#seleccionar-mascota{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    color: rgb(248, 248, 248);
+}
+
+h2 {
+    color: lightskyblue;
+}
+
+.tarjetas{
+    display: flex;
+    gap: 50px;
+    box-sizing: border-box;
+}
+
+label {
+    color: rgb(80, 153, 77);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: rgb(218, 218, 218); */
+    box-sizing: border-box;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+label:hover{
+    background-color: rgb(190, 190, 190);
+    opacity: 0.6;
+    box-shadow:  0 0 0 2px white, 0 0 0 4px blue;
+} 
+
+.tarjetas img{
+    width: 80px;
+}
+
+/* porque esta imagen es mas grande que el resto */
+.tarjetas .tuca-grande{
+    width: 60px;
+}
+
+.nomostrar{
+    display:none;
+}
+   
+.chkconlabel[type="radio"]:checked + label{
+    background-color: rgb(190, 190, 190);
+    opacity: 0.6;
+    box-shadow:  0 0 0 2px white, 0 0 0 4px blue;
+}
+
+button{
+    padding: 12px;
+    font-weight: 400;
+    border-radius: 2rem;
+    border: none;
+    font-size: .9rem;
+    margin-top: 2rem;
+    color: #fff;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: rgb(111, 42, 175);
+}
+
+#seleccionar{
+    font-weight: 900;
+    color: rgba(251, 255, 0, 0.774);
+    background-image: url(../image/seleccionar.bmp);
+}
+
+input{
+    display: none;
+}
+
+#seleccionar-ataque{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-ataque{
+    padding: 12px;
+    margin: 0 12px;
+}
+
+#fuego {
+    font-weight: 900;
+    color: rgb(255, 255, 255);
+    background-image: url(../image/fuego.bmp);
+}
+
+#agua{
+    font-weight: 900;
+    color: rgb(255, 255, 255);
+    background-image: url(../image/agua.bmp);
+}
+
+#tierra{
+    font-weight: 900;
+    color: rgb(255, 255, 255);
+    background-image: url(../image/piedra.bmp);
+}
+
+.batalla{
+    display: flex;
+    width: 510px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#resultado-mio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#resultado-enemigo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#batalla-resultado{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#resultado-batalla{
+    position: absolute;
+    z-index: 1;
+}
+
+section div div img{
+    width: 60px;
+    z-index: 0;
+    position: absolute;
+    left: auto;
+}
+
+#mensajes{
+    display: flex;
+    justify-content: center;
+}
+
+#msj-dinamico{
+    color: rgb(80, 153, 77);
+}
+
+#reiniciar{
+    justify-content: center;
+    justify-content: center;
+    padding: 0;
+    margin-top: -32px;
+}
+
+
+
+
