@@ -22,13 +22,19 @@ const Pydos = document.querySelector('#Pydos');
 const mascotaSeleccionada = document.querySelector('#mascota-propia')
 const mascotaRival = document.querySelector('#mascota-rival')
 const vidasPropia = document.querySelector('#vidas-propia')
+.style.display = 'none'
 const vidasRival = document.querySelector('#vidas-rival')
+vidasRival.style.display = 'none'
 const msjDinamico = document.querySelector('#resultado-batalla')
-msjDinamico.style.display = 'flex'
+msjDinamico.style.display = 'grid'
 const resultadoMio = document.querySelector('#resultado-mio')
-resultadoMio.style.display = 'flex'
+resultadoMio.style.display = 'grid'
 const resultadoEnemigo = document.querySelector('#resultado-enemigo')
-resultadoEnemigo.style.display = 'flex'
+resultadoEnemigo.style.display = 'grid'
+
+//setcion de los mensajes dinamicos al seleccionar un ataque
+const mensajesAtaque = document.querySelector('#batalla');
+mensajesAtaque.style.display = 'none'
 
 //section de reiniciar
 const sectionReiniciar = document.querySelector('#reiniciar');
@@ -106,18 +112,21 @@ function ataqueFuego(){
     seleccionarAtaqueEnemigo() 
     resultado()
     seleccionObligatoria()
+    mensajesAtaque.style.display = 'grid'
 }
 function ataqueAgua(){
     ataqueJugador = "Agua 💦"
     seleccionarAtaqueEnemigo()
     resultado()
     seleccionObligatoria()
+    mensajesAtaque.style.display = 'grid'
 }
 function ataqueTierra(){
     ataqueJugador = "Tierra 🪨"
     seleccionarAtaqueEnemigo()
     resultado()
     seleccionObligatoria()
+    mensajesAtaque.style.display = 'grid'
 }
 
 //Para generar el ataque enemigo de manera aleatoria

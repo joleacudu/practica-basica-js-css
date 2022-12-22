@@ -9,7 +9,7 @@
 </head>
 <body>
     <section id="seleccionar-mascota">
-        <h1>MOKEPON🔥💦🪨</h1>
+        <h1>🔥💦🪨 MOKEPON 🔥💦🪨</h1>
 
         <h2>Elige tu mascota:</h2>
         
@@ -63,21 +63,33 @@
             <button id="agua" class="btn-ataque">Agua 💦</button>
             <button id="tierra" class="btn-ataque">Tierra 🪨</button>
         </div>
-        
-        <div id="mensajes">
-            <p ><span id="mascota-propia">Tu mascota</span> tiene <span id="vidas-propia">3</span> Vidas</p>
-            <p><span id="mascota-rival">La mascota</span> rival tiene <span id="vidas-rival">3</span> Vidas</p>   
-        </div>
 
-        <div class="batalla">
+        <div id="batalla">
+            <div id="mensajes" class="aliado">
+                <div id="barraVida">
+                    <p id="mascota-propia">Tu mascota</p>
+                    <div id="vidas-propia" class="progreso" style="--w:33%"></div> 
+                </div>
+                <img src="./image/pydos.png" alt="">
+            </div>
+
             <div id="resultado-mio">Mis Ataques</div>
+
             <div id="batalla-resultado">
                 <p id="resultado-batalla"></p>
                 <img src="./image/vs.png" alt="">
             </div>
+
             <div id="resultado-enemigo">Ataques Del Rival</div>
+
+            <div id="mensajes" class="rival">
+                <div id="barraVida">
+                    <p id="mascota-rival">La mascota Rival</p>
+                    <div id="vidas-rival" class="progreso" style="--w:33%"></div>
+                </div>
+                <img src="./image/mokepons_mokepon_hipodoge_attack.png" alt="">
+            </div>
         </div>
-        
         
         <section id="reiniciar">
             <button id="reiniciar-btn">Reiniciar Juego</button>
