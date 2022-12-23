@@ -68,31 +68,39 @@
             <div id="mensajes" class="aliado">
                 <div id="barraVida">
                     <p id="mascota-propia">Tu mascota</p>
-                    <div id="vidas-propia" class="progreso" style="--w:33%"></div> 
+                    <progress max="3" value="" id="progresoVidaAliado"></progress>
+                    <div id="vidas-propia"></div> 
                 </div>
-                <img src="./image/pydos.png" alt="">
+                <img id="aliado" src="" alt="">
             </div>
 
-            <div id="resultado-mio">Mis Ataques</div>
+            <div class="uno">
+                <p class="tres">Mis Ataques</p>
+                <div id="resultado-mio" style="overflow: auto;"></div>
+            </div>
 
             <div id="batalla-resultado">
                 <p id="resultado-batalla"></p>
                 <img src="./image/vs.png" alt="">
             </div>
 
-            <div id="resultado-enemigo">Ataques Del Rival</div>
+            <div class="dos">
+                <p class="tres">Ataques Del Rival</p>   
+                <div id="resultado-enemigo" style="overflow: auto;"></div>
+            </div>
 
             <div id="mensajes" class="rival">
                 <div id="barraVida">
                     <p id="mascota-rival">La mascota Rival</p>
-                    <div id="vidas-rival" class="progreso" style="--w:33%"></div>
+                    <progress max="3" value="" id="progresoVidaRival"></progress>
+                    <div id="vidas-rival" ></div>
                 </div>
-                <img src="./image/mokepons_mokepon_hipodoge_attack.png" alt="">
+                <img id="contrincante" src="" alt="">
             </div>
         </div>
         
-        <section id="reiniciar">
-            <button id="reiniciar-btn">Reiniciar Juego</button>
+        <section id="reiniciar" for="reiniciar-btn">
+            <button id="reiniciar-btn"><p>Reload</p></button> 
         </section>
     </section>
 

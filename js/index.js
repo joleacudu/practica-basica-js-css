@@ -45,8 +45,8 @@ const reiniciar = document.querySelector('#reiniciar-btn');
 //variables que se crean en el .js
 let ataqueJugador
 let ataqueEnemigo
-let vidaJugador = 3
-let vidaEnemigo = 3
+let vidaJugador = document.querySelector('#progresoVidaAliado').value = 3
+let vidaEnemigo = document.querySelector('#progresoVidaRival').value =3
 let pokemon 
 let pokemonRival 
 let ataques 
@@ -62,16 +62,22 @@ reiniciar.addEventListener('click', recargarPagina)
 function mascota(){
     if(Hipodoge.checked){
         pokemon = mascotaSeleccionada.innerText = "Hipodoge";
+        document.querySelector('#aliado').src = './image/mokepons_mokepon_hipodoge_attack.png'
     }else if(Capipepo.checked){
         pokemon = mascotaSeleccionada.innerText = "Capipepo"
+        document.querySelector('#aliado').src = './image/mokepons_mokepon_capipepo_attack.png'
     }else if(Ratigueya.checked){
         pokemon =  mascotaSeleccionada.innerText = "Ratigueya"
+        document.querySelector('#aliado').src = './image/mokepons_mokepon_ratigueya_attack.png'
     }else if(Langostesvis.checked){
         pokemon = mascotaSeleccionada.innerText = "Langostesvis"
+        document.querySelector('#aliado').src = './image/langos.png'
     }else if(Tucapalma.checked){
         pokemon = mascotaSeleccionada.innerText = "Tucapalma"
+        document.querySelector('#aliado').src = './image/tucapalma.png'
     }else if(Pydos.checked){
         pokemon = mascotaSeleccionada.innerText = "Pydos"
+        document.querySelector('#aliado').src = './image/pydos.png'
     }else{
         alert("Seleccione una mascota")
         return 
@@ -92,16 +98,22 @@ function seleccionarMascotaRival(){
     if(!(pokemon == "" || pokemon == null || pokemon == undefined)){
         if(mascotaAleatorio == 1){
             pokemonRival=mascotaRival.innerText = "Hipodoge"
+            document.querySelector('#contrincante').src = './image/mokepons_mokepon_hipodoge_attack.png'
         }else if(mascotaAleatorio == 2){
             pokemonRival=mascotaRival.innerText = "Capipepo"
+            document.querySelector('#contrincante').src = './image/mokepons_mokepon_capipepo_attack.png'
         }else if(mascotaAleatorio == 3){
             pokemonRival=mascotaRival.innerText = "Ratigueya"
+            document.querySelector('#contrincante').src = './image/mokepons_mokepon_ratigueya_attack.png'
         }else if(mascotaAleatorio == 4){
             pokemonRival=mascotaRival.innerText = "Langostesvis"
+            document.querySelector('#contrincante').src = './image/langos.png'
         }else if(mascotaAleatorio == 5){
             pokemonRival=mascotaRival.innerText = "Tucapalma"
+            document.querySelector('#contrincante').src = './image/tucapalma.png'
         }else{
             pokemonRival=mascotaRival.innerText = "Pydos"
+            document.querySelector('#contrincante').src = './image/pydos.png'
         }
     }
 }
@@ -164,11 +176,13 @@ function combates(){
     } else if((ataqueEnemigo == "Fuego 🔥" && ataqueJugador == "Agua 💦") || (ataqueEnemigo == "Tierra 🪨" && ataqueJugador == "Fuego 🔥") || (ataqueEnemigo == "Agua 💦" && ataqueJugador == "Tierra 🪨")){
         vidaEnemigo--
         ataques = "Ganaste"
-        vidasRival.innerText = vidaEnemigo
+        vidasRival.innerText = vidaEnemigo //no se muestra
+        document.querySelector('#progresoVidaRival').value = vidaEnemigo
     }else{
         vidaJugador--
         ataques = "Perdiste"
-        vidasPropia.innerText = vidaJugador
+        vidasPropia.innerText = vidaJugador //no se muestra
+        document.querySelector('#progresoVidaAliado').value = vidaJugador
     }
     dinamico()
 }
