@@ -1,3 +1,6 @@
+//para seleccionar la section general de seleccionar la mascota para luego ocultarla junto con el boton y mostrar la section de ataque
+const seleccionarMascota = document.querySelector('#seleccionar-mascota')
+
 //btn para seleecionar un pokemos de la lista
 const seleccionar = document.querySelector('#seleccionar');
 
@@ -62,31 +65,33 @@ reiniciar.addEventListener('click', recargarPagina)
 function mascota(){
     if(Hipodoge.checked){
         pokemon = mascotaSeleccionada.innerText = "Hipodoge";
-        document.querySelector('#aliado').src = './image/mokepons_mokepon_hipodoge_attack.png'
+        document.querySelector('#aliado').src = './image/mascotas/mokepons_mokepon_hipodoge_attack.png'
     }else if(Capipepo.checked){
         pokemon = mascotaSeleccionada.innerText = "Capipepo"
-        document.querySelector('#aliado').src = './image/mokepons_mokepon_capipepo_attack.png'
+        document.querySelector('#aliado').src = './image/mascotas/mokepons_mokepon_capipepo_attack.png'
     }else if(Ratigueya.checked){
         pokemon =  mascotaSeleccionada.innerText = "Ratigueya"
-        document.querySelector('#aliado').src = './image/mokepons_mokepon_ratigueya_attack.png'
+        document.querySelector('#aliado').src = './image/mascotas/mokepons_mokepon_ratigueya_attack.png'
     }else if(Langostesvis.checked){
         pokemon = mascotaSeleccionada.innerText = "Langostesvis"
-        document.querySelector('#aliado').src = './image/langos.png'
+        document.querySelector('#aliado').src = './image/mascotas/langos.png'
     }else if(Tucapalma.checked){
         pokemon = mascotaSeleccionada.innerText = "Tucapalma"
-        document.querySelector('#aliado').src = './image/tucapalma.png'
+        document.querySelector('#aliado').src = './image/mascotas/tucapalma.png'
     }else if(Pydos.checked){
         pokemon = mascotaSeleccionada.innerText = "Pydos"
-        document.querySelector('#aliado').src = './image/pydos.png'
+        document.querySelector('#aliado').src = './image/mascotas/pydos.png'
     }else{
         alert("Seleccione una mascota")
         return 
     }
-    btnAtaques.style.display = 'flex'
-    sectionReiniciar.style.display = 'flex'
+    btnAtaques.style.display = 'grid'
+    sectionReiniciar.style.display = 'grid'
     seleccionarMascotaRival()
     limpiar()
     seleccionar.disabled = true
+    seleccionarMascota.style.display = 'none'
+    mensajesAtaque.style.display = 'grid'
 }
 
 //Para seleccionar aleatoreamente una mascota para el rival
@@ -98,22 +103,22 @@ function seleccionarMascotaRival(){
     if(!(pokemon == "" || pokemon == null || pokemon == undefined)){
         if(mascotaAleatorio == 1){
             pokemonRival=mascotaRival.innerText = "Hipodoge"
-            document.querySelector('#contrincante').src = './image/mokepons_mokepon_hipodoge_attack.png'
+            document.querySelector('#contrincante').src = './image/mascotas/mokepons_mokepon_hipodoge_attack.png'
         }else if(mascotaAleatorio == 2){
             pokemonRival=mascotaRival.innerText = "Capipepo"
-            document.querySelector('#contrincante').src = './image/mokepons_mokepon_capipepo_attack.png'
+            document.querySelector('#contrincante').src = './image/mascotas/mokepons_mokepon_capipepo_attack.png'
         }else if(mascotaAleatorio == 3){
             pokemonRival=mascotaRival.innerText = "Ratigueya"
-            document.querySelector('#contrincante').src = './image/mokepons_mokepon_ratigueya_attack.png'
+            document.querySelector('#contrincante').src = './image/mascotas/mokepons_mokepon_ratigueya_attack.png'
         }else if(mascotaAleatorio == 4){
             pokemonRival=mascotaRival.innerText = "Langostesvis"
-            document.querySelector('#contrincante').src = './image/langos.png'
+            document.querySelector('#contrincante').src = './image/mascotas/langos.png'
         }else if(mascotaAleatorio == 5){
             pokemonRival=mascotaRival.innerText = "Tucapalma"
-            document.querySelector('#contrincante').src = './image/tucapalma.png'
+            document.querySelector('#contrincante').src = './image/mascotas/tucapalma.png'
         }else{
             pokemonRival=mascotaRival.innerText = "Pydos"
-            document.querySelector('#contrincante').src = './image/pydos.png'
+            document.querySelector('#contrincante').src = './image/mascotas/pydos.png'
         }
     }
 }
@@ -124,21 +129,18 @@ function ataqueFuego(){
     seleccionarAtaqueEnemigo() 
     resultado()
     seleccionObligatoria()
-    mensajesAtaque.style.display = 'grid'
 }
 function ataqueAgua(){
     ataqueJugador = "Agua 💦"
     seleccionarAtaqueEnemigo()
     resultado()
     seleccionObligatoria()
-    mensajesAtaque.style.display = 'grid'
 }
 function ataqueTierra(){
     ataqueJugador = "Tierra 🪨"
     seleccionarAtaqueEnemigo()
     resultado()
     seleccionObligatoria()
-    mensajesAtaque.style.display = 'grid'
 }
 
 //Para generar el ataque enemigo de manera aleatoria
