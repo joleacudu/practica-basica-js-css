@@ -8,76 +8,89 @@
     <title>Mokepon</title>
 </head>
 <body>
+    <h1 class="gradient-text3">🔥💦🪨 MOKEPON 🔥💦🪨</h1>
     <section id="seleccionar-mascota">
-        <h1 class="gradient-text3">🔥💦🪨 MOKEPON 🔥💦🪨</h1>
 
         <h2 class="gradient-text2">Elige tu mascota:</h2>
         
-        <div class="tarjetas">
-            <input type="radio" name="mascotas" id="Hipodoge" class="nomostrar chkconlabel"/>
-            <label for="Hipodoge" class="resaltar">
-                <p>Hipodoge</p>
-                <img src="./image/mascotas/mokepons_mokepon_hipodoge_attack.png" alt="">
-            </label>
+        <div class="container-tarjetas">
+            <div class="tarjetas">
+                <input type="radio" name="mascotas" id="Hipodoge" class="nomostrar chkconlabel"/>
+                <label for="Hipodoge" class="resaltar">
+                    <p>Hipodoge</p>
+                    <img src="./image/mascotas/mokepons_mokepon_hipodoge_attack.png" alt="">
+                </label>
+            </div>
+                
+            <div class="tarjetas">    
+                <input type="radio" name="mascotas" id="Capipepo" class="nomostrar chkconlabel"/>  
+                <label for="Capipepo" class="resaltar">
+                    <p>Capipepo</p>
+                    <img src="./image/mascotas/mokepons_mokepon_capipepo_attack.png" alt="">
+                </label>
+            </div>    
+                
+            <div class="tarjetas">
+                <input type="radio" name="mascotas" id="Ratigueya" class="nomostrar chkconlabel"/>  
+                <label for="Ratigueya" class="resaltar">
+                    <p>Ratigueya</p>
+                    <img src="./image/mascotas/mokepons_mokepon_ratigueya_attack.png" alt="">
+                </label>
+            </div>
+    
+            <div class="tarjetas">    
+                <input type="radio" name="mascotas" id="Langostesvis" class="nomostrar chkconlabel"/>  
+                <label for="Langostesvis" class="resaltar"> 
+                    <p>Langostesvis</p>
+                    <img src="./image/mascotas/langos.png" alt="">
+                </label>
+            </div>
             
-            <input type="radio" name="mascotas" id="Capipepo" class="nomostrar chkconlabel"/>  
-            <label for="Capipepo" class="resaltar">
-                <p>Capipepo</p>
-                <img src="./image/mascotas/mokepons_mokepon_capipepo_attack.png" alt="">
-            </label>
+            <div class="tarjetas">
+                <input type="radio" name="mascotas" id="Tucapalma" class="nomostrar chkconlabel"/> 
+                <label for="Tucapalma" class="resaltar">
+                    <p>Tucapalma</p>
+                    <img class="tuca-grande" src="./image/mascotas/tucapalma.png" alt="">
+                </label>
+            </div>
             
-            <input type="radio" name="mascotas" id="Ratigueya" class="nomostrar chkconlabel"/>  
-            <label for="Ratigueya" class="resaltar">
-                <p>Ratigueya</p>
-                <img src="./image/mascotas/mokepons_mokepon_ratigueya_attack.png" alt="">
-            </label>
-            
-            <input type="radio" name="mascotas" id="Langostesvis" class="nomostrar chkconlabel"/>  
-            <label for="Langostesvis" class="resaltar"> 
-                <p>Langostesvis</p>
-                <img src="./image/mascotas/langos.png" alt="">
-            </label>
-            
-            <input type="radio" name="mascotas" id="Tucapalma" class="nomostrar chkconlabel"/> 
-            <label for="Tucapalma" class="resaltar">
-                <p>Tucapalma</p>
-                <img class="tuca-grande" src="./image/mascotas/tucapalma.png" alt="">
-            </label>
-            
-            <input type="radio" name="mascotas" id="Pydos" class="nomostrar chkconlabel"/>  
-            <label for="Pydos" class="resaltar">
-                <p>Pydos</p>
-                <img src="./image/mascotas/pydos.png" alt="">
-            </label>
+            <div class="tarjetas">
+                <input type="radio" name="mascotas" id="Pydos" class="nomostrar chkconlabel"/>  
+                <label for="Pydos" class="resaltar">
+                    <p>Pydos</p>
+                    <img src="./image/mascotas/pydos.png" alt="">
+                </label>
+            </div>
         </div>
-
+        
         <button id="seleccionar">Seleccionar</button>
     
     </section>
 
     <section id="seleccionar-ataque">
-        <h1 class="gradient-text3">🔥💦🪨 MOKEPON 🔥💦🪨</h1>
-        <h2 class="gradient-text2"> Elige Tu Ataque:</h2>
+        <h2 class="gradient-text2 h2-ataque"> Elige Tu Ataque:</h2>
         
-        <div>
+        <div class="seleccion-ataque">
             <button id="fuego" class="btn-ataque">Fuego 🔥</button>
             <button id="agua" class="btn-ataque">Agua 💦</button>
             <button id="tierra" class="btn-ataque">Tierra 🪨</button>
         </div>
 
         <div id="batalla">
-            <div id="mensajes" class="aliado">
-                <div id="barraVida">
-                    <p id="mascota-propia">Tu mascota</p>
-                    <progress  max="3" value="" id="progresoVidaAliado"></progress>
-                    <div id="vidas-propia"></div> 
+            <div class="miResultado">
+                <div id="mensajes" class="aliado">
+                    <div id="barraVida">
+                        <p id="mascota-propia">Tu mascota</p>
+                        <progress  max="3" value="" id="progresoVidaAliado"></progress>
+                        <div id="vidas-propia"></div> 
+                    </div>
+                    <img id="aliado" src="" alt="">
                 </div>
-                <img id="aliado" src="" alt="">
-            </div>
-
-            <div class="uno">
-                <p class="tres">Mis Ataques</p>
-                <div id="resultado-mio" style="overflow: auto;"></div>
+    
+                <div class="uno">
+                    <p class="tres">Mis Ataques</p>
+                    <div id="resultado-mio" style="overflow: auto;"></div>
+                </div>
             </div>
 
             <div id="batalla-resultado">
@@ -85,18 +98,20 @@
                 <img src="./image/vs.png" alt="">
             </div>
 
-            <div class="dos">
-                <p class="tres">Ataques Del Rival</p>   
-                <div id="resultado-enemigo" style="overflow: auto;"></div>
-            </div>
-
-            <div id="mensajes" class="rival">
-                <div id="barraVida">
-                    <p id="mascota-rival">La mascota Rival</p>
-                    <progress max="3" value="" id="progresoVidaRival"></progress>
-                    <div id="vidas-rival" ></div>
+            <div class="resultadoRival">
+                <div class="dos">
+                    <p class="tres">Ataques Del Rival</p>   
+                    <div id="resultado-enemigo" style="overflow: auto;"></div>
                 </div>
-                <img id="contrincante" src="" alt="">
+    
+                <div id="mensajes" class="rival">
+                    <div id="barraVida">
+                        <p id="mascota-rival">La mascota Rival</p>
+                        <progress max="3" value="" id="progresoVidaRival"></progress>
+                        <div id="vidas-rival" ></div>
+                    </div>
+                    <img id="contrincante" src="" alt="">
+                </div>
             </div>
         </div>
         
