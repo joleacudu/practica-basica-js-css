@@ -8,18 +8,11 @@ const seleccionar = document.querySelector('#seleccionar');
 const btnAtaques = document.querySelector('#seleccionar-ataque')
 btnAtaques.style.display = 'none' // para ocultar la section 
 
-//btn de seleccion de ataque
-const fuego = document.querySelector('#fuego');
-const agua = document.querySelector('#agua');
-const tierra = document.querySelector('#tierra');
-
-//mascotas
-const Hipodoge = document.querySelector('#Hipodoge');
-const Capipepo = document.querySelector('#Capipepo');
-const Ratigueya = document.querySelector('#Ratigueya');
-const Langostesvis = document.querySelector('#Langostesvis');
-const Tucapalma = document.querySelector('#Tucapalma');
-const Pydos = document.querySelector('#Pydos');
+//btn de seleccion de ataque 
+const seleccionAtaque = document.querySelector('.seleccion-ataque')
+let fuego 
+let agua
+let tierra 
 
 //Interactuar con la informacion que se va seleccionando  y verla
 const mascotaSeleccionada = document.querySelector('#mascota-propia')
@@ -46,52 +39,139 @@ sectionReiniciar.style.display = 'none' // para ocultar la section .
 const reiniciar = document.querySelector('#reiniciar-btn');
 
 //variables que se crean en el .js
-let ataqueJugador
-let ataqueEnemigo
+let ataqueJugador = []
+let ataqueEnemigo = []
+let ataquesMokepon
 let vidaJugador = document.querySelector('#progresoVidaAliado').value = 3
 let vidaEnemigo = document.querySelector('#progresoVidaRival').value =3
-let pokemon 
-let pokemonRival 
-let ataques 
+let pokemon //es el mokepon que seleccione el jugador
+let opcionDeMokepones
+const tarjetasInyectadas = document.querySelector('#tarjetasInyectadas')
+let botones = []
+
+//mascotas
+let Hipodoge 
+let Capipepo 
+let Ratigueya
+let Langostesvis 
+let Tucapalma 
+let Pydos 
+
+let mokepones = [] //creo un array vacio para ir agregando los mokepones en el.
+
+//clases 
+class Mokepon{
+    constructor(nombre, imagen, vida){
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.vida = vida
+        this.ataques = []
+    }
+}
+
+Hipodoge = new Mokepon('Hipodoge', './image/mascotas/mokepons_mokepon_hipodoge_attack.png', 3)
+Capipepo = new Mokepon('Capipepo', './image/mascotas/mokepons_mokepon_capipepo_attack.png', 3)
+Ratigueya = new Mokepon('Ratigueya', './image/mascotas/mokepons_mokepon_ratigueya_attack.png', 3)
+Langostesvis = new Mokepon('Langostesvis', './image/mascotas/langos.png', 3)
+Tucapalma = new Mokepon('Tucapalma', './image/mascotas/tucapalma.png', 3)
+Pydos = new Mokepon('Pydos', './image/mascotas/pydos.png', 3)
+
+Hipodoge.ataques.push(
+    {'nombre' : 'agua 💦', id: 'agua'},
+    {'nombre' : 'agua 💦', id: 'agua'},
+    {'nombre' : 'agua 💦', id: 'agua'},
+    {'nombre' : 'tierra 🪨', id: 'tierra'},
+    {'nombre' : 'fuego 🔥', id: 'fuego'},
+    )
+Capipepo.ataques.push(
+    {'nombre' : 'agua 💦', id: 'agua'},
+    {'nombre' : 'tierra 🪨', id: 'tierra'},
+    {'nombre' : 'tierra 🪨', id: 'tierra'},
+    {'nombre' : 'tierra 🪨', id: 'tierra'},
+    {'nombre' : 'fuego 🔥', id: 'fuego'},
+    )
+Ratigueya.ataques.push(
+    {'nombre' : 'agua 💦', id: 'agua'},
+    {'nombre' : 'agua 💦', id: 'agua'},
+    {'nombre' : 'tierra 🪨', id: 'tierra'},
+    {'nombre' : 'tierra 🪨', id: 'tierra'},
+    {'nombre' : 'fuego 🔥', id: 'fuego'},
+    )
+Langostesvis.ataques.push(
+    {'nombre' : 'agua 💦', id: 'agua'},
+    {'nombre' : 'agua 💦', id: 'agua'},
+    {'nombre' : 'agua 💦', id: 'agua'},
+    {'nombre' : 'tierra 🪨', id: 'tierra'},
+    {'nombre' : 'fuego 🔥', id: 'fuego'},
+    )
+Tucapalma.ataques.push(
+    {'nombre' : 'agua 💦', id: 'agua'},
+    {'nombre' : 'agua 💦', id: 'agua'},
+    {'nombre' : 'tierra 🪨', id: 'tierra'},
+    {'nombre' : 'tierra 🪨', id: 'tierra'},
+    {'nombre' : 'fuego 🔥', id: 'fuego'},
+    )
+Pydos.ataques.push(
+    {'nombre' : 'agua 💦', id: 'agua'},
+    {'nombre' : 'fuego 🔥', id: 'fuego'},
+    {'nombre' : 'fuego 🔥', id: 'fuego'},
+    {'nombre' : 'fuego 🔥', id: 'fuego'},
+    {'nombre' : 'tierra 🪨', id: 'tierra'},
+    )
+        
+mokepones.push(Hipodoge, Capipepo, Ratigueya, Langostesvis, Tucapalma, Pydos)
+
+mokepones.forEach((mokepon) => {
+    // console.log(mokepon)
+    opcionDeMokepones = `
+        <div  class="tarjetas">
+            <input type="radio" name="mascotas" id=${mokepon.nombre} class="nomostrar chkconlabel"/>
+            <label for=${mokepon.nombre} class="resaltar">
+                <p>${mokepon.nombre}</p>
+                <img src=${mokepon.imagen} alt=${mokepon.nombre}>
+            </label>
+        </div>
+    `
+    tarjetasInyectadas.innerHTML += opcionDeMokepones
+    //mascotas
+    Hipodoge = document.querySelector('#Hipodoge');
+    Capipepo = document.querySelector('#Capipepo');
+    Ratigueya = document.querySelector('#Ratigueya');
+    Langostesvis = document.querySelector('#Langostesvis');
+    Tucapalma = document.querySelector('#Tucapalma');
+    Pydos = document.querySelector('#Pydos');
+})
 
 //eventos que estan a la escucha para realizar la accion correspondiente
 seleccionar.addEventListener('click', mascota);
-fuego.addEventListener('click', ataqueFuego)
-agua.addEventListener('click', ataqueAgua)
-tierra.addEventListener('click', ataqueTierra)
 reiniciar.addEventListener('click', recargarPagina)
 
 //para cambiar el nombre de la mascota seleccionada en el html 
 function mascota(){
     if(Hipodoge.checked){
-        pokemon = mascotaSeleccionada.innerText = "Hipodoge";
-        document.querySelector('#aliado').src = './image/mascotas/mokepons_mokepon_hipodoge_attack.png'
+        pokemon = mascotaSeleccionada.innerText = Hipodoge.id;
     }else if(Capipepo.checked){
-        pokemon = mascotaSeleccionada.innerText = "Capipepo"
-        document.querySelector('#aliado').src = './image/mascotas/mokepons_mokepon_capipepo_attack.png'
+        pokemon = mascotaSeleccionada.innerText = Capipepo.id
     }else if(Ratigueya.checked){
-        pokemon =  mascotaSeleccionada.innerText = "Ratigueya"
-        document.querySelector('#aliado').src = './image/mascotas/mokepons_mokepon_ratigueya_attack.png'
+        pokemon =  mascotaSeleccionada.innerText = Ratigueya.id
     }else if(Langostesvis.checked){
-        pokemon = mascotaSeleccionada.innerText = "Langostesvis"
-        document.querySelector('#aliado').src = './image/mascotas/langos.png'
+        pokemon = mascotaSeleccionada.innerText = Langostesvis.id
     }else if(Tucapalma.checked){
-        pokemon = mascotaSeleccionada.innerText = "Tucapalma"
-        document.querySelector('#aliado').src = './image/mascotas/tucapalma.png'
+        pokemon = mascotaSeleccionada.innerText = Tucapalma.id
     }else if(Pydos.checked){
-        pokemon = mascotaSeleccionada.innerText = "Pydos"
-        document.querySelector('#aliado').src = './image/mascotas/pydos.png'
+        pokemon = mascotaSeleccionada.innerText = Pydos.id
     }else{
         alert("Seleccione una mascota")
         return 
     }
     btnAtaques.style.display = 'grid'
     sectionReiniciar.style.display = 'grid'
-    seleccionarMascotaRival()
-    limpiar()
     seleccionar.disabled = true
     seleccionarMascota.style.display = 'none'
     mensajesAtaque.style.display = 'grid'
+    extraerAtaques(pokemon)
+    seleccionarMascotaRival()
+    limpiar()
 }
 
 //Para seleccionar aleatoreamente una mascota para el rival
@@ -99,61 +179,46 @@ function aleatorio(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 function seleccionarMascotaRival(){
-    const mascotaAleatorio = aleatorio(1,6)
-    if(!(pokemon == "" || pokemon == null || pokemon == undefined)){
-        if(mascotaAleatorio == 1){
-            pokemonRival=mascotaRival.innerText = "Hipodoge"
-            document.querySelector('#contrincante').src = './image/mascotas/mokepons_mokepon_hipodoge_attack.png'
-        }else if(mascotaAleatorio == 2){
-            pokemonRival=mascotaRival.innerText = "Capipepo"
-            document.querySelector('#contrincante').src = './image/mascotas/mokepons_mokepon_capipepo_attack.png'
-        }else if(mascotaAleatorio == 3){
-            pokemonRival=mascotaRival.innerText = "Ratigueya"
-            document.querySelector('#contrincante').src = './image/mascotas/mokepons_mokepon_ratigueya_attack.png'
-        }else if(mascotaAleatorio == 4){
-            pokemonRival=mascotaRival.innerText = "Langostesvis"
-            document.querySelector('#contrincante').src = './image/mascotas/langos.png'
-        }else if(mascotaAleatorio == 5){
-            pokemonRival=mascotaRival.innerText = "Tucapalma"
-            document.querySelector('#contrincante').src = './image/mascotas/tucapalma.png'
-        }else{
-            pokemonRival=mascotaRival.innerText = "Pydos"
-            document.querySelector('#contrincante').src = './image/mascotas/pydos.png'
-        }
-    }
+    const mascotaAleatorio = aleatorio(1,mokepones.length)
+    mascotaRival.innerText = mokepones[mascotaAleatorio].nombre
+    document.querySelector('#contrincante').src = mokepones[mascotaAleatorio].imagen   
+    ataqueEnemigo = mokepones[mascotaAleatorio].ataques
+    secuenciaAtaques()
 }
 
-//Para los ataques con los botones
-function ataqueFuego(){
-    ataqueJugador = "Fuego 🔥"
-    seleccionarAtaqueEnemigo() 
-    resultado()
-    seleccionObligatoria()
-}
-function ataqueAgua(){
-    ataqueJugador = "Agua 💦"
-    seleccionarAtaqueEnemigo()
-    resultado()
-    seleccionObligatoria()
-}
-function ataqueTierra(){
-    ataqueJugador = "Tierra 🪨"
-    seleccionarAtaqueEnemigo()
-    resultado()
-    seleccionObligatoria()
-}
+// //Para los ataques con los botones
+// function ataqueFuego(){
+//     ataqueJugador = "Fuego 🔥"
+//     seleccionarAtaqueEnemigo() 
+//     resultado()
+//     seleccionObligatoria()
+// }
+// function ataqueAgua(){
+//     ataqueJugador = "Agua 💦"
+//     seleccionarAtaqueEnemigo()
+//     resultado()
+//     seleccionObligatoria()
+// }
+// function ataqueTierra(){
+//     ataqueJugador = "Tierra 🪨"
+//     seleccionarAtaqueEnemigo()
+//     resultado()
+//     seleccionObligatoria()
+// }
 
 //Para generar el ataque enemigo de manera aleatoria
+
 function seleccionarAtaqueEnemigo(){
-    let ataqueAleatorio = aleatorio(1,3)
-    
-    if(ataqueAleatorio == 1){
+    let ataqueAleatorio = aleatorio(1,ataqueEnemigo.length)
+     //modificarlo para que tome el array de ataques del mokepon seleccionado, para luego ir eliminando cada ataque que se seleccione
+    if(ataqueAleatorio == 1 || ataqueAleatorio == 2){
         ataqueEnemigo = "Fuego 🔥"
-    }else if(ataqueAleatorio == 2){
+    }else if(ataqueAleatorio == 3 || ataqueAleatorio == 4){
         ataqueEnemigo = "Agua 💦"
     }else{
         ataqueEnemigo = "Tierra 🪨"
     }
+    console.log(ataqueAleatorio)
     combates()
 }
 
@@ -223,7 +288,59 @@ function recargarPagina(){
     location.reload()
 }
 
+//para extraer los ataques que tiene el mokepon
+function extraerAtaques(pokemon){
+    let ataques 
+    let imagen
+    for (let i = 0; i < mokepones.length; i++) {
+        if (pokemon === mokepones[i].nombre) {
+            imagen = mokepones[i].imagen
+            ataques = mokepones[i].ataques
+            document.querySelector('#aliado').src = imagen
+        }
+    }
+    mostarAtaques(ataques)
+}
 
+//para mostrar los {ataques} que tiene cada [mokepon]
+function mostarAtaques(ataques){
+    ataques.forEach((ataque) => {
+        ataquesMokepon = `
+            <button id="${ataque.id}" class="btn-ataque BAtaque">${ataque.nombre}</button>
+        `
+        seleccionAtaque.innerHTML += ataquesMokepon
+    })
+    
+    fuego = document.querySelector('#fuego');
+    agua = document.querySelector('#agua');
+    tierra = document.querySelector('#tierra');
+    
+    botones = document.querySelectorAll('.BAtaque')
+    
+    // fuego.addEventListener('click', ataqueFuego)
+    // agua.addEventListener('click', ataqueAgua)
+    // tierra.addEventListener('click', ataqueTierra)
+}
 
-
-
+function secuenciaAtaques(){
+    botones.forEach((boton) => {
+        boton.addEventListener('click', (e) => {
+            if(e.target.textContent === "agua 💦"){
+                ataqueJugador.push('Agua')
+                console.log(ataqueJugador)
+                boton.style.display = 'none'
+            }else if(e.target.textContent === "fuego 🔥"){
+                ataqueJugador.push('Fuego')
+                console.log(ataqueJugador)
+                boton.style.display = 'none'
+            }else {
+                ataqueJugador.push('Tierra')
+                console.log(ataqueJugador)
+                boton.style.display = 'none'
+            }
+            seleccionarAtaqueEnemigo() 
+            resultado()
+            seleccionObligatoria()
+        })
+    })
+}

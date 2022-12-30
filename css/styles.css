@@ -25,7 +25,6 @@ h1 {
     display: grid;
     color: rgb(248, 248, 248);
     font-family: pokemon;
-    margin-top: 0px;
     font-size: xx-large;
     justify-items: center;
     justify-content: center;
@@ -87,12 +86,8 @@ label:hover{
 
 .tarjetas img{
     width: 120px;
+    height: 140px;
 }
-
-/* porque esta imagen es mas grande que el resto */
-.tarjetas .tuca-grande{
-    width: 85px;
-} 
 
 .nomostrar{
     display:none;
@@ -359,21 +354,15 @@ progress {
 }
 
 @media (max-width: 1639px) {
-    h1{
-        width: 100%;
-    }
-
-    #batalla{
-        width: 100%;
-    }
     #resultado-batalla{
         color: rgba(255, 0, 0, 0.932);
     }
 }
 
 @media (max-width: 990px) {
-    h1{
-        margin-top: 0px;
+    .tarjetas img{
+        width: 80px;
+        height: 100px;
     }
 
     #seleccionar-ataque {  
@@ -443,7 +432,6 @@ progress {
 @media (max-width: 500px) {
     h1{
         font-size: small;
-        left: 50%;
     }
 
     .container-tarjetas{
@@ -463,6 +451,7 @@ progress {
 
     .tarjetas img{
         width: 60px;
+        height: 80px;
     }
     
     /* porque esta imagen es mas grande que el resto */
