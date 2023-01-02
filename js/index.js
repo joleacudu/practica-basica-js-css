@@ -18,7 +18,7 @@ let tierra
 const mascotaSeleccionada = document.querySelector('#mascota-propia')
 const mascotaRival = document.querySelector('#mascota-rival')
 const vidasPropia = document.querySelector('#vidas-propia')
-.style.display = 'none'
+vidasPropia.style.display = 'none'
 const vidasRival = document.querySelector('#vidas-rival')
 vidasRival.style.display = 'none'
 const msjDinamico = document.querySelector('#resultado-batalla')
@@ -40,7 +40,9 @@ const reiniciar = document.querySelector('#reiniciar-btn');
 
 //variables que se crean en el .js
 let ataqueJugador = []
+let ataqueJugadorSeleccionado
 let ataqueEnemigo = []
+let ataqueEnemigoSeleccionado
 let ataquesMokepon
 let vidaJugador = document.querySelector('#progresoVidaAliado').value = 3
 let vidaEnemigo = document.querySelector('#progresoVidaRival').value =3
@@ -48,6 +50,7 @@ let pokemon //es el mokepon que seleccione el jugador
 let opcionDeMokepones
 const tarjetasInyectadas = document.querySelector('#tarjetasInyectadas')
 let botones = []
+let round = 1 //Para enumerar los rounds 
 
 //mascotas
 let Hipodoge 
@@ -179,14 +182,14 @@ function aleatorio(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 function seleccionarMascotaRival(){
-    const mascotaAleatorio = aleatorio(1,mokepones.length)
+    const mascotaAleatorio = aleatorio(0,mokepones.length-1)
     mascotaRival.innerText = mokepones[mascotaAleatorio].nombre
     document.querySelector('#contrincante').src = mokepones[mascotaAleatorio].imagen   
     ataqueEnemigo = mokepones[mascotaAleatorio].ataques
     secuenciaAtaques()
 }
 
-// //Para los ataques con los botones
+//Para los ataques con los botones
 // function ataqueFuego(){
 //     ataqueJugador = "Fuego 🔥"
 //     seleccionarAtaqueEnemigo() 
@@ -209,16 +212,22 @@ function seleccionarMascotaRival(){
 //Para generar el ataque enemigo de manera aleatoria
 
 function seleccionarAtaqueEnemigo(){
-    let ataqueAleatorio = aleatorio(1,ataqueEnemigo.length)
-     //modificarlo para que tome el array de ataques del mokepon seleccionado, para luego ir eliminando cada ataque que se seleccione
-    if(ataqueAleatorio == 1 || ataqueAleatorio == 2){
-        ataqueEnemigo = "Fuego 🔥"
-    }else if(ataqueAleatorio == 3 || ataqueAleatorio == 4){
-        ataqueEnemigo = "Agua 💦"
+    let eliminarAtaquesEnemigo
+    let ataqueAleatorio = aleatorio(0,ataqueEnemigo.length-1)
+    
+    eliminarAtaquesEnemigo = ataqueEnemigo.splice(ataqueAleatorio,1)
+    console.log(eliminarAtaquesEnemigo[0].nombre) //siempre sera indice 0 porque no guardo los resultados anteriores
+    
+    // modificarlo para que tome el array de ataques del mokepon seleccionado, para luego ir eliminando cada ataque que se seleccione
+    if(eliminarAtaquesEnemigo[0].nombre === "fuego 🔥"){
+        ataqueEnemigoSeleccionado= "Fuego 🔥"
+    }else if(eliminarAtaquesEnemigo[0].nombre === "agua 💦"){
+        ataqueEnemigoSeleccionado = "Agua 💦"
     }else{
-        ataqueEnemigo = "Tierra 🪨"
+        ataqueEnemigoSeleccionado = "Tierra 🪨"
     }
-    console.log(ataqueAleatorio)
+    console.log(ataqueEnemigo)
+
     combates()
 }
 
@@ -228,8 +237,8 @@ function dinamico(){
     let nuevoAtaqueEnemigo = document.createElement('p')
 
     msjDinamico.innerText = ataques
-    nuevoAtaqueMio.innerText = ataqueJugador
-    nuevoAtaqueEnemigo.innerText = ataqueEnemigo
+    nuevoAtaqueMio.innerText = ataqueJugadorSeleccionado
+    nuevoAtaqueEnemigo.innerText = ataqueEnemigoSeleccionado
 
     resultadoMio.appendChild(nuevoAtaqueMio)
     resultadoEnemigo.appendChild(nuevoAtaqueEnemigo)
@@ -238,16 +247,19 @@ function dinamico(){
 
 //para determinar quien gana con cada combinacion de ataques
 function combates(){
-    if(ataqueEnemigo == ataqueJugador){
-        ataques = "Empate"
-    } else if((ataqueEnemigo == "Fuego 🔥" && ataqueJugador == "Agua 💦") || (ataqueEnemigo == "Tierra 🪨" && ataqueJugador == "Fuego 🔥") || (ataqueEnemigo == "Agua 💦" && ataqueJugador == "Tierra 🪨")){
+    if(ataqueEnemigoSeleccionado == ataqueJugadorSeleccionado){
+        ataques = `Round ${round}: Empate`
+        round++;
+    } else if((ataqueEnemigoSeleccionado == "Fuego 🔥" && ataqueJugadorSeleccionado == "Agua 💦") || (ataqueEnemigoSeleccionado == "Tierra 🪨" && ataqueJugadorSeleccionado == "Fuego 🔥") || (ataqueEnemigoSeleccionado == "Agua 💦" && ataqueJugadorSeleccionado == "Tierra 🪨")){
         vidaEnemigo--
-        ataques = "Ganaste"
+        ataques = `Round ${round}: Ganaste`
+        round++;
         vidasRival.innerText = vidaEnemigo //no se muestra
         document.querySelector('#progresoVidaRival').value = vidaEnemigo
     }else{
         vidaJugador--
-        ataques = "Perdiste"
+        ataques = `Round ${round}: Perdiste`
+        round++;
         vidasPropia.innerText = vidaJugador //no se muestra
         document.querySelector('#progresoVidaAliado').value = vidaJugador
     }
@@ -256,13 +268,18 @@ function combates(){
 
 //para saber quien gano y reiniciar el juego
 function resultado(){
-    if(vidaEnemigo == 0){
+    if(vidaEnemigo == 0 || (vidaJugador > vidaEnemigo && ataqueEnemigo.length == 0)){
         msjDinamico.innerText = 'Felicitaciones Ganaste 😎.'
         fuego.disabled = true
         agua.disabled = true
         tierra.disabled = true
-    }else if(vidaJugador == 0){
-        msjDinamico.innerText = 'Perdiste, intentalo nuevamente 😯.'
+    }else if(vidaJugador == 0 || (vidaJugador < vidaEnemigo && ataqueEnemigo.length == 0)){
+        msjDinamico.innerText = 'Perdiste, intentalo nuevamente 😫.'
+        fuego.disabled = true
+        agua.disabled = true
+        tierra.disabled = true
+    }else if(vidaJugador == vidaEnemigo && ataqueEnemigo.length == 0){
+        msjDinamico.innerText = 'La batalla termino empatada 😯!!!'
         fuego.disabled = true
         agua.disabled = true
         tierra.disabled = true
@@ -326,16 +343,16 @@ function secuenciaAtaques(){
     botones.forEach((boton) => {
         boton.addEventListener('click', (e) => {
             if(e.target.textContent === "agua 💦"){
-                ataqueJugador.push('Agua')
-                console.log(ataqueJugador)
+                ataqueJugador.push('Agua 💦')
+                ataqueJugadorSeleccionado = 'Agua 💦'
                 boton.style.display = 'none'
             }else if(e.target.textContent === "fuego 🔥"){
-                ataqueJugador.push('Fuego')
-                console.log(ataqueJugador)
+                ataqueJugador.push('Fuego 🔥')
+                ataqueJugadorSeleccionado = "Fuego 🔥"
                 boton.style.display = 'none'
             }else {
-                ataqueJugador.push('Tierra')
-                console.log(ataqueJugador)
+                ataqueJugador.push('Tierra 🪨')
+                ataqueJugadorSeleccionado ='Tierra 🪨'
                 boton.style.display = 'none'
             }
             seleccionarAtaqueEnemigo() 
