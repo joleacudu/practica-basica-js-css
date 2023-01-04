@@ -364,11 +364,28 @@ progress {
     grid-template-columns: 100%;
     justify-items: center;
     align-content: center;
+    position: relative;
 }
 
-#ver-mapa button{
-    border-radius: 50%;
-    margin: 0;
+#mapa-control{
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: flex-end;
+    justify-items: end;
+}
+
+#control-flechas{  
+    position: absolute;
+    display: grid;
+    justify-items: center;
+    margin-bottom: 10px;
+}
+
+#control-flechas button{
+    border-radius: 10px;
+    margin: 0 10px;
+    background-color: rgb(59, 58, 58);
+    color: #fff;
 }
 
 #regresar{
