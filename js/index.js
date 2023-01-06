@@ -86,6 +86,8 @@ alturaMapaDeseado = anchoMapaDeseado * 600/800
 mapa.width = anchoMapaDeseado
 mapa.height = alturaMapaDeseado
 
+let jugadorId = null
+
 //clases 
 class Mokepon{
     constructor(nombre, imagen, vida, fotoCabeza){
@@ -272,6 +274,7 @@ function mascota(){
     pintarCanvas()
     extraerAtaques(pokemon)
     limpiar()
+    mokeponEscogido(pokemon)
 }
 
 //Para seleccionar aleatoreamente una mascota para el rival
@@ -497,6 +500,8 @@ function pintarCanvas(){
     tucapalmaEnemigo.pintarMokepon()
     pydosEnemigo.pintarMokepon()
 
+    enviarPosicionBackEnd(objetoMokeponSeleccionado.x, objetoMokeponSeleccionado.y)
+
     if(objetoMokeponSeleccionado.velocidadX !== 0 || objetoMokeponSeleccionado.velocidadY !== 0){
         revisarColision(hipodogeEnemigo)
         revisarColision(capipepoEnemigo)
@@ -569,3 +574,41 @@ function revisarColision(enemigo){
     sectionVerMapa.style.display = 'none'
     seleccionarMascotaRival(enemigo)
 }
+
+//Para invocar el servicio de Node.js
+function unirseAlJuego(){
+    fetch('http://127.0.0.1:5000/unirse')
+        .then(function(res){
+            // console.log(res)
+            if(res.ok){
+                res.text()
+                    .then(function(respuesta){
+                        console.log(respuesta)
+                        jugadorId = respuesta
+                    })
+            }
+        })
+}
+
+function mokeponEscogido(pokemon){
+    fetch(`http://127.0.0.1:5000/mokepon/${jugadorId}`,{
+        method: 'post',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            mokepon: pokemon
+        })
+    })
+}
+
+function enviarPosicionBackEnd(x, y){
+    fetch(`http://127.0.0.1:5000/mokepon/${jugadorId}/coordenadas`,{
+        method : 'post',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            x,
+            y
+        })
+    })
+}
+
+unirseAlJuego()
