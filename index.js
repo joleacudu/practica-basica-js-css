@@ -61,9 +61,12 @@ app.post('/mokepon/:jugadorId/coordenadas', (req,res)=>{
     if(jugadorIndex >= 0){
         jugadores[jugadorIndex].actualizarCoordenadas(x, y)
     }
-    console.log(jugadores)
-    console.log(jugadorId)
-    res.end()
+
+    const enemigos = jugadores.filter((jugador) => jugadorId !== jugador.id)
+
+    res.send({
+        enemigos
+    })
 })
 
 app.listen(5000, ()=>{

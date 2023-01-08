@@ -609,6 +609,14 @@ function enviarPosicionBackEnd(x, y){
             y
         })
     })
+        .then(function(res){
+            if(res.ok){
+                res.json()
+                    .then(function(respuesta){
+                        console.log(respuesta.enemigos) 
+                    })
+            }
+        })
 }
 
 unirseAlJuego()
